@@ -1,0 +1,2 @@
+5
+['AATCC', 'ATCCA', 'CAATC', 'CCAAC', 'TCCAA']
