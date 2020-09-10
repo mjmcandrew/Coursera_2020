@@ -35,8 +35,8 @@ def EulerianCycle(graph, path = None, unexplored = None, current_node = None, ta
             #break
             cycle = None
             unexplored = None
-            current_vertex = None
-            target_vertex = None
+            current_node = None
+            target_node = None
         return EulerianCycle(graph, path, unexplored, current_node, target_node)
     return path, cycle
 
