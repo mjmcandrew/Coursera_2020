@@ -22,12 +22,13 @@ def deBruijnFromKmers(Patterns):
 
 #import sys
 #if __name__ == "__main__":
-    #Input = sys.stdin.readlines()
-    #patterns = [pattern.strip() for pattern in Input]
-patterns = []
+with open("Patterns.txt") as f:
+    patterns = [pattern.strip() for pattern in f]
+
 deBruijnResult = deBruijnFromKmers(patterns)
+print(deBruijnResult)
 for key, value in deBruijnResult.items():
-    print key + ' -> ' + ','.join(map(str, value))
+    print(key + ' -> ' + ','.join(map(str, value)))
 #for key, value in deBruijnResult.items():
     #print key
     #print(key + ' -> ' + ','.join(map(str, value)))
