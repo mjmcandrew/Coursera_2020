@@ -17,3 +17,6 @@ def countDegrees(graph):
         #outdegrees.
         #Note: May need to switch positions of indegrees and outdegrees at some point.
     return degrees
+
+graph = {1: [2, 3, 5], 2: [1, 4], 3: [2, 5], 4: [1, 2, 5], 5: [3]}
+print(countDegrees(graph))
