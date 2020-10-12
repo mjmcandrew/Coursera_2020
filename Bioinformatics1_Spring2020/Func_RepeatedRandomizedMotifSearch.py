@@ -1,3 +1,5 @@
+import random
+
 def RepeatedRandomizedMotifSearch(Dna, k, t, N):
     #Uses the same logic of RandomizedMotifSearch to perform the
     #RandomizedMotifSearch N times.
@@ -12,7 +14,6 @@ def RepeatedRandomizedMotifSearch(Dna, k, t, N):
     return BestMotifs
 
 def RandomizedMotifSearch(Dna, k, t):
-    import random
     random_motifs = RandomMotifs(Dna, k, t)
     #Creates a set of random motifs taken from each string in Dna.
     BestMotifs = random_motifs

@@ -1,5 +1,6 @@
+import random
+
 def WeightedDie(Probabilities):
-    import random
     NormalizedProbabilities = Normalize(Probabilities)
     #Normalizes initial set of Probabilities.
     random_float = random.uniform(0, 1)
@@ -14,7 +15,7 @@ def WeightedDie(Probabilities):
             return kmer
             #When this value reaches or goes below zero, we have selected a kmer
             #randomly with respect to probability.
-            
+
 def NormalizeProbabilities(Probabilities):
     NormalizedProbabilities = {}
     #Creates a new dictionary which will contain our normalized probabilities

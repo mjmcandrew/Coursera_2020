@@ -1,5 +1,6 @@
+import random
+
 def RandomMotifs(Dna, k, t):
-    import random
     RandomMotifs = []
     #Creates the empty set 'RandomMotifs'.
     for Dna_string in Dna:

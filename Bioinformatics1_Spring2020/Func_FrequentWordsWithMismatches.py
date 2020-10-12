@@ -1,4 +1,7 @@
 def FrequentWordsWithMismatches(Text, k, d):
+    #This algorithm returns the starting index positions of patterns
+    #of length k which appear most frequently allowing for number of
+    #mismatches 'd'.
     positions = []
     for index in range(len(Genome)-len(Pattern)+1):
         if HammingDistance(Genome[index:index+len(Pattern)], Pattern) <= d:
@@ -6,6 +9,8 @@ def FrequentWordsWithMismatches(Text, k, d):
     return positions
 
 def HammingDistance(p, q):
+    #This algorithm determines the number of mismatches (Hamming Distance)
+    #between two input strings 'p' and 'q'.
     distance = 0
     #Sets initial distance to 0.
     for index in range(len(p)):
@@ -22,6 +27,3 @@ def HammingDistance(p, q):
             #If the nucleotides at a particular index are different,
             #this increases the Hamming distance by 1.
     return distance
-
-newresults = [str(a) for a in results]
-print(" " . join(newresults))

@@ -223,7 +223,3 @@ def GreedyMotifSearch(Dna, k, t):
     return BestMotifs
 #See also http://www.mrgraeme.co.uk/greedy-motif-search/ for a detailed
 #explanation of how this algorithm works.
-
-
-newresults = [str(a) for a in results]
-print(" " . join(newresults))

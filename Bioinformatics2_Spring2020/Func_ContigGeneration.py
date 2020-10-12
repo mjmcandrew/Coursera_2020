@@ -1,3 +1,21 @@
+def ContigGeneration(Patterns):
+    #This algorithm generates contigs (or maximal non-branching paths) from a
+    #collection of kmers. In real-world terms, this allows biologists to use
+    #sequencing data which may be impossible to completely reconstruct due to
+    #repeats or errors.
+    contigs = []
+    #Initializes the empty list 'contigs'.
+    graph = deBruijnFromKmers(Patterns)
+    #Generates a deBruijn graph from input kmers.
+    paths = MaximalNonBranchingPaths(graph)
+    #Generates all maximal non-branching paths present in the graph.
+    for path in paths:
+        contig = PathToGenome(path)
+        #Given a maximal non-branching path, this uses PathToGenome to generate
+        #a string from the kmers present in this path and adds it to 'contigs'.
+        contigs.append(contig)
+    return contigs
+
 def MaximalNonBranchingPaths(graph):
     #This algorithm takes a deBruijn graph as input and returns all maximal non-branching
     #paths. For example, given the graph {1: [2], 2: [3], 3: [4, 5], 6: [7], 7: [6]},
@@ -97,13 +115,57 @@ def countDegrees(graph):
         #outdegrees.
     return degrees
 
-with open("MaximalNonBranchingPaths.txt") as f:
-    Input_graph = dict(line.strip().split(' -> ') for line in f)
-    graph = {}
-    for key, value in Input_graph.items():
-        graph[key] = [val for val in value.split(',')]
-print('graph is:\n', graph)
-print('degrees are:\n', countDegrees(graph))
-result = MaximalNonBranchingPaths(graph)
-for path in result:
-    print(('->').join([str(val) for val in path]))
+def deBruijnFromKmers(Patterns):
+    deBruijnGraph = {}
+    #Creates the empty dictionary deBruijnGraph.
+    for pattern in Patterns:
+        #Iterates through patterns in the input 'Patterns'.
+        k_length = len(pattern)
+        #Sets k_length equal to the length of the pattern.
+        suffix = pattern[1:]
+        #Sets the variable 'suffix' equal to the second through final character in the string 'pattern'.
+        prefix = pattern[0: k_length - 1]
+        #Sets the variable 'prefix' equal to the first through the penultimate character in the string
+        #'pattern'.
+        if prefix not in deBruijnGraph:
+            deBruijnGraph[prefix] = []
+            #Creates an empty list as a value assigned to the key for the specified prefix.
+            deBruijnGraph[prefix].append(suffix)
+            #Adds the pattern's suffix to the list value associated with this prefix key.
+        else:
+            deBruijnGraph[prefix].append(suffix)
+            #If the prefix key already exists in the dictionary, this simply appends the suffix that follows.
+    return deBruijnGraph
+
+def PathToGenome(Patterns):
+    #This algorithm takes an ordered set of kmers and reconstructs them
+    #into a continuous string ('genome').
+    PathToGenome = Patterns[0]
+    #Establishes the first kmer in 'Patterns' as the initial PathToGenome.
+    patterns_length = len(Patterns)
+    #Determines the number of kmers in 'Patterns'.
+    for index in range(1, patterns_length):
+        #Iterates through the remaining kmers in 'Patterns'.
+        kmer_length = len(Patterns[index])
+        #Determines the length of each iterated kmer.
+        if Patterns[index][0:kmer_length - 1] == PathToGenome[index:]:
+            #Checks whether there is overlap between the final portion of PathToGenome and
+            #the initial portion of the kmer string.
+            PathToGenome = PathToGenome + Patterns[index][kmer_length - 1]
+            #If so, adds the non-overlapping portion of the kmer to PathToGenome.
+    return PathToGenome
+
+with open("ContigGeneration.txt") as f:
+    input = f.readlines()
+    patterns =[x.strip() for x in input]
+
+print(patterns)
+
+#import sys
+#if __name__ == "__main__":
+    #Input = sys.stdin.readlines()
+    #patterns = [pattern.strip() for pattern in Input]
+
+
+result = ContigGeneration(patterns)
+print(' '.join(result))

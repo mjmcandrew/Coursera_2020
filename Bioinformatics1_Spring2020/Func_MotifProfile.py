@@ -46,27 +46,21 @@ def MotifProfile(Motifs):
              #Assigns a placeholder zero to each index corresponding to the
              #length of the kmers analyzed.
     motif_number = float(len(Motifs))
-    print 'motif_number is', motif_number
     #Determines the number of motifs being analyzed. We will use this value to
     #determine the frequency of any nucleotide at a given position.
     counts = MotifCount(Motifs)
-    print 'counts are', counts
     #Runs MotifCount on the motifs being analyzed to determine the nucleotide
     #count at each position of each motif. These values will be divided by
     #motif_number in order to determine the frequency of each nucleotide.
     for nucleotide in counts:
-        print "nucleotide is", nucleotide
         #Iterates through the keys "A", "C", "G", "T" in counts.
         for index in range(kmer_length):
-            print 'index is', index
             #Iterates through the index positions of the list of values assigned
             #to each key.
             value = float(counts[nucleotide][index])
-            print 'value is', value
             #Assigns a variable "value" to the actual count contained in each of
             #the lists in counts (provided by MotifCount).
             frequency = value / motif_number
-            print 'frequency is', frequency
             #Divides the count assigned above by the motif number, which yields
             #the frequency of each nucleotide at that position in a given list
             #of kmer strings.
@@ -75,5 +69,3 @@ def MotifProfile(Motifs):
             #Replaces the placeholder zeros in profile with the value of
             #frequency at the correct position.
     return profile
-
-print MotifProfile(['TGA', 'GTT', 'GAA', 'TGT'])

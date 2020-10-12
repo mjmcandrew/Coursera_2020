@@ -1,4 +1,6 @@
 def ApproximatePatternCount(Pattern, Text, d):
+    #Uses HammingDistance to return patterns appearing in the text which
+    #differ from the input by the distance 'd' or less.
     count = 0
     for index in range(len(Text)-len(Pattern)+1):
         if HammingDistance(Text[index:index+len(Pattern)], Pattern) <= d:

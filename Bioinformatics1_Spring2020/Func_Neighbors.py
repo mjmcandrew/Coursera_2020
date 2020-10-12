@@ -1,14 +1,24 @@
 def Neighbors(Pattern, d):
+    #This algorithm returns all strings related to input 'Pattern' which
+    #differ from that pattern by at most distance 'd' (# of mismatches).
     if d == 0:
         return Pattern
     if len(Pattern) == 1:
         return ['A', 'C', 'G', 'T']
+    #The above lines establish the base cases for the recursive portion
+    #of the algorithm below.
     Neighborhood = []
+    #Initializes the empty list 'Neighborhood'.
     nucleotides = ['A', 'C', 'G', 'T']
     firstSymbol = Pattern[0]
+    #Initializes the variable 'firstSymbol' as the first character in the
+    #input string 'Pattern'.
     Suffix = Pattern[1:]
+    #Stores the remaining characters in 'Pattern' as the suffix.
     SuffixNeighbors = Neighbors(Suffix, d)
+    #Recursively calls Neighbors on suffix allowing for 'd' mismatches.
     for item in SuffixNeighbors:
+        #Iterates through items in 'SuffixNeighbors'.
         if HammingDistance(Suffix, item) < d:
             for character in nucleotides:
                 newNeighbor = character + item
@@ -19,6 +29,8 @@ def Neighbors(Pattern, d):
     return Neighborhood
 
 def HammingDistance(p, q):
+    #This algorithm determines the number of mismatches (Hamming Distance)
+    #between two input strings 'p' and 'q'.
     distance = 0
     #Sets initial distance to 0.
     for index in range(len(p)):

@@ -27,21 +27,3 @@ def OverlapGraph(Patterns):
                 #If the prefix matches the suffix, the entry for the pattern
                 #is given a value equal to the key from overlapGraph.
     return overlapGraph
-
-
-
-patternList = ['GCGA, CAAG, AAGA, GCCG, ACAA, AGTA, TAGG, AGTA, ACGT, AGCC, TTCG, AGTT, AGTA, CGTA, GCGC, GCGA, GGTC, GCAT, AAGC, TAGA, ACAG, TAGA, TCCT, CCCC, GCGC, ATCC, AGTA, AAGA, GCGA, CGTA']
-overlapList = OverlapGraph(patternList)
-for key in sorted(overlapList):
-    # initialize place holder of suffixes (call it text)
-    text = ""
-    # go through the suffixes stored for each prefix
-    for l in overlapList[key]:
-    # identifying if you have 1 or more results (and thus if you need a comma)
-        if text == "":
-            text = text + l
-        else:
-            text = text + "" + l
-    # concatenate this bad girl
-    text = key + " -> " + text
-    print(text)

@@ -1,24 +1,43 @@
 def ComputingFrequenciesWithMismatches(Text, k, d):
+    #This algorithm computes the frequency with which patterns of length 'k' occur
+    #in the string 'Text', while allowing for 'd' mismatches.
     FrequencyArray = [0] * (4 ** k)
+    #Initializes the frequency array with placeholder 0's for each possible kmer.
     for index in range(len(Text) - k + 1):
+        #Iterates through indices in 'Text' with regard to 'k'.
         Pattern = Text[index:index+k]
+        #Captures the pattern of length 'k' present at the current index.
         Neighborhood = Neighbors(Pattern, d)
+        #Calculates all neighbors of the current pattern using the helper algorithm
+        #Neighbors.
         for ApproximatePattern in Neighborhood:
+            #Converts all patterns calculated above to numbers and increments
+            #the frequency value of the corresponding index.
             FrequencyArrayIndex = PatternToNumber(ApproximatePattern)
             FrequencyArray[FrequencyArrayIndex] += 1
     return FrequencyArray
 
 def Neighbors(Pattern, d):
+    #This algorithm returns all strings related to input 'Pattern' which
+    #differ from that pattern by at most distance 'd' (# of mismatches).
     if d == 0:
         return Pattern
     if len(Pattern) == 1:
         return ['A', 'C', 'G', 'T']
+    #The above lines establish the base cases for the recursive portion
+    #of the algorithm below.
     Neighborhood = []
+    #Initializes the empty list 'Neighborhood'.
     nucleotides = ['A', 'C', 'G', 'T']
     firstSymbol = Pattern[0]
+    #Initializes the variable 'firstSymbol' as the first character in the
+    #input string 'Pattern'.
     Suffix = Pattern[1:]
+    #Stores the remaining characters in 'Pattern' as the suffix.
     SuffixNeighbors = Neighbors(Suffix, d)
+    #Recursively calls Neighbors on suffix allowing for 'd' mismatches.
     for item in SuffixNeighbors:
+        #Iterates through items in 'SuffixNeighbors'.
         if HammingDistance(Suffix, item) < d:
             for character in nucleotides:
                 newNeighbor = character + item
@@ -29,6 +48,8 @@ def Neighbors(Pattern, d):
     return Neighborhood
 
 def HammingDistance(p, q):
+    #This algorithm determines the number of mismatches (Hamming Distance)
+    #between two input strings 'p' and 'q'.
     distance = 0
     #Sets initial distance to 0.
     for index in range(len(p)):

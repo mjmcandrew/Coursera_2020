@@ -17,4 +17,3 @@ def NormalizeProbabilities(Probabilities):
         #Provides the normalized probabilities by dividing each value in
         #Probabilities by the total probability.
     return NormalizedProbabilities
-print NormalizeProbabilities({'ATA': 0.22, 'TTA': 0.54, 'CTA': 0.58, 'CCC': 0.36, 'TTC': 0.3})

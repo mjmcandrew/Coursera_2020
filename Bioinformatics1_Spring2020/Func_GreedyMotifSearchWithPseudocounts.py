@@ -1,5 +1,3 @@
-# Input:  A list of kmers Dna, and integers k and t (where t is the number of kmers in Dna)
-# Output: GreedyMotifSearch(Dna, k, t)
 def GreedyMotifSearchWithPseudocounts(Dna, k, t):
     BestMotifs = []
     #Initializes an empty list of the best motifs found in the list of

@@ -62,6 +62,3 @@ def ProfileMostProbableKmer(text, k, profile):
             #If above conditions are met, 'most_prob_kmer' is replaced with
             #the current pattern being analyzed.
     return most_prob_kmer
-sample_profile = {'A': [0.0, 0.25, 0.5], 'C': [0.0, 0.0, 0.0], 'T': [0.5, 0.25, 0.5], 'G': [0.5, 0.5, 0.0]}
-sample_Dna = ['TGACGTTC', 'TAAGAGTT', 'GGACGAAA', 'CTGTTCGC']
-print Motifs(sample_profile, sample_Dna)

@@ -1,4 +1,10 @@
 def GibbsSampler(Dna, k, t, N):
+    #The Gibbs sampler is a slightly more cautious algorithm than the
+    #RandomizedMotifSearch. Rather than potentially changing all captured
+    #kmers in a subsequent round of motif finding, the GibbsSampler iteratively
+    #changes one motif per round of motif finding to arrive at an optimal solution.
+    #Note that k = motif length, t = number of motifs to find, and N = number of
+    #times the algorithm will run.
     import random
     BestMotifs = []
     #Creates the empty list 'BestMotifs'.
@@ -34,7 +40,6 @@ def GibbsSampler(Dna, k, t, N):
             #with reduced_motifs.
     return BestMotifs
 
-# place all subroutines needed for GibbsSampler below this line
 def MotifProfileWithPseudocounts(Motifs):
     profile = {}
     #Creates an empty dictionary profile that will store the counts determined
@@ -293,14 +298,3 @@ def Score(Motifs):
             #'Motifs' does not match the consensus nucleotide, increments
             #the motif score by 1.
     return motif_score
-
-for i in range(20):
-    m = GibbsSampler(Dna, k, t, N)
-    print m
-    print Score(m), Score(BestMotifs)
-    if Score(m) < Score(BestMotifs):
-        BestMotifs = m
-        print 'New BestMotifs are:', BestMotifs
-
-for motif in BestMotifs:
-    print motif

@@ -17,8 +17,3 @@ def PatternCount(Text, Pattern):
         if Text[i:i+len(Pattern)] == Pattern:
             count = count+1
     return count
-
-### DO NOT MODIFY THE CODE BELOW THIS LINE ###
-import sys
-lines = sys.stdin.read().splitlines()
-print(FasterSymbolArray(lines[0],lines[1]))

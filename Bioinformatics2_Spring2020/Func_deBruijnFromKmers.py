@@ -19,16 +19,3 @@ def deBruijnFromKmers(Patterns):
             deBruijnGraph[prefix].append(suffix)
             #If the prefix key already exists in the dictionary, this simply appends the suffix that follows.
     return deBruijnGraph
-
-#import sys
-#if __name__ == "__main__":
-with open("Patterns.txt") as f:
-    patterns = [pattern.strip() for pattern in f]
-
-deBruijnResult = deBruijnFromKmers(patterns)
-print(deBruijnResult)
-for key, value in deBruijnResult.items():
-    print(key + ' -> ' + ','.join(map(str, value)))
-#for key, value in deBruijnResult.items():
-    #print key
-    #print(key + ' -> ' + ','.join(map(str, value)))

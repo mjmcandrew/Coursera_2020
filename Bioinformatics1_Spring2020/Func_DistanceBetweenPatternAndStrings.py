@@ -28,6 +28,8 @@ def DistanceBetweenPatternAndStrings(pattern, Dna):
     return distance
 
 def HammingDistance(p, q):
+    #This algorithm determines the number of mismatches (Hamming Distance)
+    #between two input strings 'p' and 'q'.
     distance = 0
     #Sets initial distance to 0.
     for index in range(len(p)):

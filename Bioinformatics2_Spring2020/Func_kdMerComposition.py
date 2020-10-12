@@ -1,4 +1,6 @@
 def kdMerComposition(text, k, d):
+    #This algorithm generates read pairs of length 'k' from input 'text'
+    #which have distance 'd' between the fwd read and rev read.
     kdMers = []
     for index in range(len(text) - ((2 * k) + d) + 1):
         read1_start = index

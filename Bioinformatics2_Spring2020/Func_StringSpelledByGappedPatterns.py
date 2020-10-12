@@ -1,17 +1,31 @@
 def StringSpelledByGappedPatterns(GappedPatterns, k, d):
+    #This algorithm takes as input read pairs in the format [['read1, read2'], etc]
+    #as well as a value 'k' (the length of each read in the read pair) and
+    #distance 'd' which separates read1 from read2. The output is the string
+    #reconstructed from these read pairs, if such a string exists. Note that
+    #the input read pairs may have to be formatted before input from ['read1|read2', etc.].
     FirstPatterns = []
     SecondPatterns = []
     for pattern in GappedPatterns:
+        #Iterates through patterns in the list of lists 'GappedPatterns'.
         FirstPatterns.append(pattern[0])
         SecondPatterns.append(pattern[1])
+        #Stores read1 in the list 'FirstPatterns' and read2 in the list 'SecondPatterns'.
     PrefixString = PathToGenome(FirstPatterns)
+    #Reconstructs a string from all first reads present in input.
     SuffixString = PathToGenome(SecondPatterns)
+    #Reconstructs a string from all second reads present in input.
     for index in range((k + d), len(PrefixString)):
+        #Determines whether prefix and suffix strings overlap appropriately.
         if PrefixString[index] != SuffixString[index - k - d]:
             return "There is no string spelled by the gapped patterns!"
+    #If the strings overlap appropriately, the strings are joined, accounting
+    #for the lengths of k and d, and this final string is returned.
     return PrefixString + SuffixString[-(k+d):]
 
 def PathToGenome(Patterns):
+    #This algorithm takes an ordered set of kmers and reconstructs them
+    #into a continuous string ('genome').
     PathToGenome = Patterns[0]
     #Establishes the first kmer in 'Patterns' as the initial PathToGenome.
     patterns_length = len(Patterns)

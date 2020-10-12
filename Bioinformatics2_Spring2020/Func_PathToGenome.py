@@ -1,4 +1,6 @@
 def PathToGenome(Patterns):
+    #This algorithm takes an ordered set of kmers and reconstructs them
+    #into a continuous string ('genome').
     PathToGenome = Patterns[0]
     #Establishes the first kmer in 'Patterns' as the initial PathToGenome.
     patterns_length = len(Patterns)
